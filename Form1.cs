@@ -18,7 +18,7 @@ namespace ZipArchiveMaker
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
             CheckForIllegalCrossThreadCalls = false;
             SM.speedMonitor.Set(Speed, ProgressBar);
-            Text += " Ver.20250726";
+            Text += " Ver.20250806";
         }
         private void SelectFile_Click(object sender, EventArgs e)
         {
@@ -239,6 +239,11 @@ namespace ZipArchiveMaker
             Password.Text = HuhZip.GetRandomChar((int)W.Value);
         }
 
+        private void button12_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = CommonZip.Select();
+        }
+
         private void button10_Click(object sender, EventArgs e)
         {
             E_CHPath.Text = CommonZip.Select();
@@ -270,11 +275,18 @@ namespace ZipArchiveMaker
         {
             E_OZPath.Text = CommonZip.Select();
         }
+        private void button14_Click(object sender, EventArgs e)
+        {
+            ZIM_Media.Text = ImageZip.SelectImg();
+        }
+        private void button13_Click(object sender, EventArgs e)
+        {
+            ZIM_Path.Text = ImageZip.Select();
+        }
         private void FalseAll()//edit
         {
             SingleZip.Visible = CommonZIp.Visible = SZstd.Visible = FakeSplit.Visible = UnevenSpilt.Visible = EncryptZip.Visible = ImgZip.Visible = HuhZ.Visible
-            = TLZ.Visible = SF.Visible = XorZip.Visible = E_OffsetZip.Visible = E_CH.Visible = false;
-            //Thread.Sleep(1);
+            = TLZ.Visible = SF.Visible = XorZip.Visible = E_OffsetZip.Visible = E_CH.Visible = XorAndZip.Visible = ZipInMedia.Visible = false;
         }
         private void Mode_SelectedIndexChanged(object sender, EventArgs e)//edit
         {
@@ -319,6 +331,12 @@ namespace ZipArchiveMaker
                     break;
                 case 12:
                     E_CH.Visible = true;
+                    break;
+                case 13:
+                    XorAndZip.Visible = true;
+                    break;
+                case 14:
+                    ZipInMedia.Visible = true;
                     break;
                 default:
                     break;
@@ -369,7 +387,13 @@ namespace ZipArchiveMaker
                         await OffsetZip.Run(I2S(), E_OZPath.Text, ProgressBar, (int)E_OZLevel.Value, [.. Enumerable.Repeat((byte)E_OZHEX.Value, (int)E_OZHEXLEN.Value)], (int)E_OZPerZip.Value);
                         break;
                     case 12:
-                        await ChangeHeader.Run(I2S(),E_CHPath.Text,ProgressBar,(int)E_CHLevel.Value,BitConverter.GetBytes((uint)E_CHH.Value));
+                        await ChangeHeader.Run(I2S(), E_CHPath.Text, ProgressBar, (int)E_CHLevel.Value, BitConverter.GetBytes((uint)E_CHH.Value));
+                        break;
+                    case 13:
+                        await XorAndZ.Run(I2S(), textBox1.Text, ProgressBar, (int)numericUpDown2.Value, (byte)numericUpDown1.Value);
+                        break;
+                    case 14:
+                        await ZipInMed.Run(I2S(), ZIM_Path.Text,ProgressBar,(int)ZIM_Level.Value,ZIM_Media.Text);
                         break;
                     default:
                         break;

@@ -181,6 +181,25 @@
             label66 = new Label();
             E_CHPath = new TextBox();
             label67 = new Label();
+            XorAndZip = new Panel();
+            numericUpDown1 = new NumericUpDown();
+            label61 = new Label();
+            label62 = new Label();
+            numericUpDown2 = new NumericUpDown();
+            button12 = new Button();
+            label63 = new Label();
+            textBox1 = new TextBox();
+            label69 = new Label();
+            ZipInMedia = new Panel();
+            button14 = new Button();
+            label70 = new Label();
+            ZIM_Media = new TextBox();
+            label71 = new Label();
+            ZIM_Level = new NumericUpDown();
+            button13 = new Button();
+            label72 = new Label();
+            ZIM_Path = new TextBox();
+            label73 = new Label();
             CommonZIp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)CZ_Level).BeginInit();
             SingleZip.SuspendLayout();
@@ -217,6 +236,11 @@
             E_CH.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)E_CHH).BeginInit();
             ((System.ComponentModel.ISupportInitialize)E_CHLevel).BeginInit();
+            XorAndZip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
+            ZipInMedia.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ZIM_Level).BeginInit();
             SuspendLayout();
             // 
             // Files
@@ -245,7 +269,7 @@
             // 
             Mode.DropDownStyle = ComboBoxStyle.DropDownList;
             Mode.FormattingEnabled = true;
-            Mode.Items.AddRange(new object[] { "普通打包", "每个文件单独打包Zip", "每个文件单独打包Zstd", "伪分卷", "不定大小分卷", "带密码保护打包", "图片+压缩包", "打乱文件名+额外索引", "双层压缩（Zstd+Zip）", "图片+伪分卷", "Xor加密+Zip打包", "（高级）伪文件头+多Zip拼接", "（高级）自定义替换Zip文件头" });
+            Mode.Items.AddRange(new object[] { "普通打包", "每个文件单独打包Zip", "每个文件单独打包Zstd", "伪分卷", "不定大小分卷", "带密码保护打包", "图片+压缩包", "打乱文件名+额外索引", "双层压缩（Zstd+Zip）", "图片+伪分卷", "Xor加密整个Zip包", "（高级）伪文件头+多Zip拼接", "（高级）自定义替换Zip文件头", "Xor加密+Zip打包", "Zip伪装媒体文件" });
             Mode.Location = new Point(270, 10);
             Mode.Name = "Mode";
             Mode.Size = new Size(518, 25);
@@ -1690,12 +1714,194 @@
             label67.TabIndex = 0;
             label67.Text = resources.GetString("label67.Text");
             // 
+            // XorAndZip
+            // 
+            XorAndZip.Controls.Add(numericUpDown1);
+            XorAndZip.Controls.Add(label61);
+            XorAndZip.Controls.Add(label62);
+            XorAndZip.Controls.Add(numericUpDown2);
+            XorAndZip.Controls.Add(button12);
+            XorAndZip.Controls.Add(label63);
+            XorAndZip.Controls.Add(textBox1);
+            XorAndZip.Controls.Add(label69);
+            XorAndZip.Location = new Point(270, 38);
+            XorAndZip.Name = "XorAndZip";
+            XorAndZip.Size = new Size(518, 370);
+            XorAndZip.TabIndex = 19;
+            XorAndZip.Visible = false;
+            // 
+            // numericUpDown1
+            // 
+            numericUpDown1.Location = new Point(3, 244);
+            numericUpDown1.Maximum = new decimal(new int[] { 255, 0, 0, 0 });
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(62, 23);
+            numericUpDown1.TabIndex = 20;
+            // 
+            // label61
+            // 
+            label61.AutoSize = true;
+            label61.Location = new Point(3, 224);
+            label61.Name = "label61";
+            label61.Size = new Size(136, 17);
+            label61.TabIndex = 17;
+            label61.Text = "Xor密钥（HexByte）：";
+            // 
+            // label62
+            // 
+            label62.AutoSize = true;
+            label62.Location = new Point(3, 157);
+            label62.Name = "label62";
+            label62.Size = new Size(220, 17);
+            label62.TabIndex = 5;
+            label62.Text = "压缩等级（0=仅存档，9=最高压缩）：";
+            // 
+            // numericUpDown2
+            // 
+            numericUpDown2.Location = new Point(3, 177);
+            numericUpDown2.Maximum = new decimal(new int[] { 9, 0, 0, 0 });
+            numericUpDown2.Name = "numericUpDown2";
+            numericUpDown2.Size = new Size(120, 23);
+            numericUpDown2.TabIndex = 4;
+            // 
+            // button12
+            // 
+            button12.Location = new Point(440, 91);
+            button12.Name = "button12";
+            button12.Size = new Size(75, 23);
+            button12.TabIndex = 3;
+            button12.Text = "选择";
+            button12.UseVisualStyleBackColor = true;
+            button12.Click += button12_Click;
+            // 
+            // label63
+            // 
+            label63.AutoSize = true;
+            label63.Location = new Point(3, 94);
+            label63.Name = "label63";
+            label63.Size = new Size(92, 17);
+            label63.TabIndex = 2;
+            label63.Text = "选择输出文件：";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(3, 114);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(512, 23);
+            textBox1.TabIndex = 1;
+            // 
+            // label69
+            // 
+            label69.AutoSize = true;
+            label69.Location = new Point(3, 9);
+            label69.Name = "label69";
+            label69.Size = new Size(508, 85);
+            label69.TabIndex = 0;
+            label69.Text = resources.GetString("label69.Text");
+            // 
+            // ZipInMedia
+            // 
+            ZipInMedia.Controls.Add(button14);
+            ZipInMedia.Controls.Add(label70);
+            ZipInMedia.Controls.Add(ZIM_Media);
+            ZipInMedia.Controls.Add(label71);
+            ZipInMedia.Controls.Add(ZIM_Level);
+            ZipInMedia.Controls.Add(button13);
+            ZipInMedia.Controls.Add(label72);
+            ZipInMedia.Controls.Add(ZIM_Path);
+            ZipInMedia.Controls.Add(label73);
+            ZipInMedia.Location = new Point(270, 38);
+            ZipInMedia.Name = "ZipInMedia";
+            ZipInMedia.Size = new Size(518, 370);
+            ZipInMedia.TabIndex = 20;
+            ZipInMedia.Visible = false;
+            // 
+            // button14
+            // 
+            button14.Location = new Point(440, 212);
+            button14.Name = "button14";
+            button14.Size = new Size(75, 23);
+            button14.TabIndex = 8;
+            button14.Text = "选择";
+            button14.UseVisualStyleBackColor = true;
+            button14.Click += button14_Click;
+            // 
+            // label70
+            // 
+            label70.AutoSize = true;
+            label70.Location = new Point(3, 215);
+            label70.Name = "label70";
+            label70.Size = new Size(212, 17);
+            label70.TabIndex = 7;
+            label70.Text = "选择输入媒体文件（自动检查格式）：";
+            // 
+            // ZIM_Media
+            // 
+            ZIM_Media.Location = new Point(3, 235);
+            ZIM_Media.Name = "ZIM_Media";
+            ZIM_Media.Size = new Size(512, 23);
+            ZIM_Media.TabIndex = 6;
+            // 
+            // label71
+            // 
+            label71.AutoSize = true;
+            label71.Location = new Point(3, 280);
+            label71.Name = "label71";
+            label71.Size = new Size(220, 17);
+            label71.TabIndex = 5;
+            label71.Text = "压缩等级（0=仅存档，9=最高压缩）：";
+            // 
+            // ZIM_Level
+            // 
+            ZIM_Level.Location = new Point(3, 300);
+            ZIM_Level.Maximum = new decimal(new int[] { 9, 0, 0, 0 });
+            ZIM_Level.Name = "ZIM_Level";
+            ZIM_Level.Size = new Size(120, 23);
+            ZIM_Level.TabIndex = 4;
+            // 
+            // button13
+            // 
+            button13.Location = new Point(440, 163);
+            button13.Name = "button13";
+            button13.Size = new Size(75, 23);
+            button13.TabIndex = 3;
+            button13.Text = "选择";
+            button13.UseVisualStyleBackColor = true;
+            button13.Click += button13_Click;
+            // 
+            // label72
+            // 
+            label72.AutoSize = true;
+            label72.Location = new Point(3, 169);
+            label72.Name = "label72";
+            label72.Size = new Size(188, 17);
+            label72.TabIndex = 2;
+            label72.Text = "选择输出文件（后缀跟随输入）：";
+            // 
+            // ZIM_Path
+            // 
+            ZIM_Path.Location = new Point(3, 189);
+            ZIM_Path.Name = "ZIM_Path";
+            ZIM_Path.Size = new Size(512, 23);
+            ZIM_Path.TabIndex = 1;
+            // 
+            // label73
+            // 
+            label73.AutoSize = true;
+            label73.Location = new Point(3, 12);
+            label73.Name = "label73";
+            label73.Size = new Size(508, 136);
+            label73.TabIndex = 0;
+            label73.Text = resources.GetString("label73.Text");
+            // 
             // Form1
             // 
             AllowDrop = true;
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 465);
+            ClientSize = new Size(800, 466);
+            Controls.Add(ZipInMedia);
+            Controls.Add(XorAndZip);
             Controls.Add(E_CH);
             Controls.Add(E_OffsetZip);
             Controls.Add(XorZip);
@@ -1771,6 +1977,13 @@
             E_CH.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)E_CHH).EndInit();
             ((System.ComponentModel.ISupportInitialize)E_CHLevel).EndInit();
+            XorAndZip.ResumeLayout(false);
+            XorAndZip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
+            ZipInMedia.ResumeLayout(false);
+            ZipInMedia.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)ZIM_Level).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1932,5 +2145,25 @@
         private Button button11;
         private Label label68;
         private NumericUpDown W;
+        private Panel XorAndZip;
+        private NumericUpDown numericUpDown1;
+        private Label label61;
+        private Label label62;
+        private NumericUpDown numericUpDown2;
+        private Button button12;
+        private Label label63;
+        private TextBox textBox1;
+        private Label label69;
+        private Panel ZipInMedia;
+        private NumericUpDown numericUpDown3;
+        private Label label71;
+        private NumericUpDown ZIM_Level;
+        private Button button13;
+        private Label label72;
+        private TextBox ZIM_Path;
+        private Label label73;
+        private Button button14;
+        private Label label70;
+        private TextBox ZIM_Media;
     }
 }

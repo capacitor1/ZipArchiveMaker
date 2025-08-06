@@ -212,6 +212,23 @@
 依赖：ICSharpCode.SharpZipLib.dll
 ----------------------------------------------------------------------------------------------------</value>
   </data>
+  <data name="label69.Text" xml:space="preserve">
+    <value>先对文件进行Xor操作，再将其打包至Zip。
+----------------------------------------------------------------------------------------------------
+参数：EnableZip64；
+依赖：ICSharpCode.SharpZipLib.dll；XoredStream.cs
+----------------------------------------------------------------------------------------------------</value>
+  </data>
+  <data name="label73.Text" xml:space="preserve">
+    <value>将Zip文件添加到几种常见媒体格式的数据中。媒体文件能够正常打开查看或播放，但Zip文件
+隐藏在其中也不受影响（体积可能会显著增大，但使用常规媒体文件检查程序是一切正常）。
+注：目前支持MPEG文件（如mp4/m4a）、PNG图像、RIFF文件（如wav/webp），其余格式
+文件默认写入到文件末尾。（大于4GB的压缩包请小心：PNG/RIFF理论上并不支持大于4GB）
+----------------------------------------------------------------------------------------------------
+参数：EnableZip64；
+依赖：ICSharpCode.SharpZipLib.dll
+----------------------------------------------------------------------------------------------------</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
