@@ -154,7 +154,7 @@ namespace ZipArchiveMaker.src
             }
             catch
             {
-                return "";
+                return "Null";
             }
         }
         static async Task<string> GetSHA1OfString(string s)
@@ -164,6 +164,7 @@ namespace ZipArchiveMaker.src
                 MemoryStream file = new MemoryStream();
                 await file.WriteAsync(Encoding.UTF8.GetBytes(s));
                 await file.FlushAsync();
+                file.Position = 0;
                 SHA1 sha1 = SHA1.Create();
                 byte[] retval = await sha1.ComputeHashAsync(file);
                 file.Close();
@@ -177,7 +178,7 @@ namespace ZipArchiveMaker.src
             }
             catch
             {
-                return "";
+                return "Null";
             }
         }
         static async Task<string> GetMD5(string s)
@@ -198,7 +199,7 @@ namespace ZipArchiveMaker.src
             }
             catch
             {
-                return "";
+                return "Null";
             }
         }
         static async Task<string> GetMD5OfString(string s)
@@ -208,6 +209,7 @@ namespace ZipArchiveMaker.src
                 MemoryStream file = new MemoryStream();
                 await file.WriteAsync(Encoding.UTF8.GetBytes(s));
                 await file.FlushAsync();
+                file.Position = 0;
                 MD5 md5 = MD5.Create();
                 byte[] retval = await md5.ComputeHashAsync(file);
                 file.Close();
@@ -221,7 +223,7 @@ namespace ZipArchiveMaker.src
             }
             catch
             {
-                return "";
+                return "Null";
             }
         }
         static int SIInt = 0;
@@ -229,7 +231,7 @@ namespace ZipArchiveMaker.src
         {
             string pathnew = string.Empty;
             var s = rawpath.Split('\\');
-            int splits = s.Length;// ex. /1/2/3/4
+            int splits = s.Length;
             for (int i = 0; i < splits - 1; i++)
             {
                 pathnew += await GetProcessedName(mode, s[i],fpath,false) + "\\";

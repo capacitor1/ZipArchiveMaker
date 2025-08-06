@@ -71,7 +71,7 @@ namespace ZipArchiveMaker.src
             {
                 int r = await fs.ReadAsync(buffer, 0, buffer.Length);
                 await compressionStream.WriteAsync(buffer, 0, r);
-                SM.speedMonitor.Total = compressionStream.Position;
+                SM.speedMonitor.Total = fs.Position;
             }
             await compressionStream.DisposeAsync();
             await fs.DisposeAsync();    
